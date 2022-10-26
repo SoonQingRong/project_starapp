@@ -41,16 +41,15 @@ def query():
 	ROUND(s_m.take_up, 0) AS take_up, ROUND(s_m.take_up_value, 0) AS take_up_value, 
 	s_m.lot_tcp_low, s_m.lot_tcp_high, s_m.lot_tcp_average,
 	s_m.house_lot_tcp_low, s_m.house_lot_tcp_high, s_m.house_lot_tcp_average,
-	m_a.metro_area, d.quarter, d.year
-	FROM date d, sales_metrics s_m, project_attributes p_a, project_plotting p_p, metro_area m_a
+	p_p.metro_area, d.quarter, d.year
+	FROM date d, sales_metrics s_m, project_attributes p_a, project_plotting p_p
 	WHERE d.date = s_m.period
 	AND s_m.serial_code = p_a.serial_code
-	AND p_a.project_code = p_p.project_code
-	AND p_p.ph_psgc = m_a.ph_psgc
-	AND p_a.general_developer = '{}'  			--change general developer when needed
-	AND p_a.grade = '{}'							--change grade when needed
-	AND d.quarter = '{}' 							--change quarter when needed
-	AND d.year = '{}'								--change year when needed
+	AND s_m.project_code = p_p.project_code
+	-- AND p_a.general_developer = '{}'  			--change general developer when needed
+	-- AND p_a.grade = '{}'									--change grade when needed
+	-- AND d.quarter = '{}' 								--change quarter when needed
+	-- AND d.year = '{}'									--change year when needed
 	ORDER BY take_up DESC	
 	) AS result
 	WHERE result.take_up IS NOT NULL;
