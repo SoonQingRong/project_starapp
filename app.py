@@ -9,7 +9,7 @@ app.secret_key = 'I Understand Databases'
 
 def get_db_connection():
 
-	result = urlparse(os.environ['DATABASE_URL'])
+    result = urlparse(os.environ['DATABASE_URL'])
     username = result.username
     password = result.password
     database = result.path[1:]
