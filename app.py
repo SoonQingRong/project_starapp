@@ -9,8 +9,7 @@ app.secret_key = 'I Understand Databases'
 
 def get_db_connection():
 
-    result = urlparse('postgresql://postgres:702141@localhost:5432/project_star_appv3')
-	#result = urlparse(os.environ['DATABASE_URL'])
+	result = urlparse(os.environ['DATABASE_URL'])
     username = result.username
     password = result.password
     database = result.path[1:]
